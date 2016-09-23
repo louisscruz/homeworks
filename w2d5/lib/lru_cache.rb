@@ -14,17 +14,22 @@ class LRUCache
   end
 
   def add(el)
-    # adds element to cache according to LRU principle
-    if @head == nil
+
+    if count == @length
+      p @head
+      @head = @head.next
+      @tail.next = el
+      p @head
+    elsif @head.nil?
       @head = el
       @tail = el
-    elsif count < @length
-      @tail.next = el
-      @tail = el
     else
-      #@
+      # @head = @head.next
+      @tail.next = el
     end
+    @tail = el
     @hash[el.value] = @tail
+
   end
 
   def show
